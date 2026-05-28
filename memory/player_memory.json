@@ -1,0 +1,11 @@
+{
+  "player_id": "guest",
+  "level": 1,
+  "experience": 0,
+  "last_login": "",
+  "inventory": [],
+  "metadata": {
+    "version": "1.0",
+    "encrypted": false
+  }
+}

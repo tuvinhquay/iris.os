@@ -1,0 +1,14 @@
+{
+  "active_strategy": "default",
+  "strategies": [
+    {
+      "name": "default",
+      "priority": "balance",
+      "auto_heal_threshold": 30,
+      "auto_sell_items": false
+    }
+  ],
+  "metadata": {
+    "last_updated": ""
+  }
+}
