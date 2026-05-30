@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         
         // Initialize Foundation Systems
         AppConfig.initialize(this)
-        FirebaseManager.initialize()
+        FirebaseManager.initialize(this)
         
         enableEdgeToEdge()
         setContent {

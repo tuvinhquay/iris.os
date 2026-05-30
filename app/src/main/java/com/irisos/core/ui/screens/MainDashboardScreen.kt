@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.irisos.core.automation.AutomationManager
@@ -14,6 +16,8 @@ import com.irisos.core.utils.AppConfig
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainDashboardScreen() {
+    val isRunning by AutomationManager.isRunning.collectAsState()
+
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("IRIS OS Dashboard") })
@@ -44,8 +48,14 @@ fun MainDashboardScreen() {
             
             item { Spacer(modifier = Modifier.height(16.dp)) }
             item { 
-                Button(onClick = { /* Start Automation Flow */ }, modifier = Modifier.fillMaxWidth()) {
-                    Text("Start Automation")
+                Button(
+                    onClick = { AutomationManager.toggleAutomation() }, 
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (isRunning) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                    )
+                ) {
+                    Text(if (isRunning) "Stop Automation" else "Start Automation")
                 }
             }
         }
@@ -66,7 +76,7 @@ fun StatusCard(label: String, status: String) {
             Text(
                 text = status, 
                 style = MaterialTheme.typography.bodyMedium, 
-                color = if (status == "OK" || status == "ACTIVE" || status == "READY")
+                color = if (status == "OK" || status == "ACTIVE" || status == "READY" || status == "RUNNING")
                     MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
             )
         }
