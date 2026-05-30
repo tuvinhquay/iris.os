@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IRIS OS</string>
+    <string name="accessibility_description">IRIS OS AI Automation Service for Game interaction.</string>
 </resources>
